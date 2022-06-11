@@ -4,7 +4,10 @@ import MovieListing from "../MovieListing/MovieListing";
 // import movieApi from "../../common/apis/MovieApi";
 // import { APIkey } from "../../common/apis/MovieApiKey";
 import { useDispatch } from "react-redux";
-import { fetchAsyncMovies } from "../../features/movies/movieSlice";
+import {
+  fetchAsyncMovies,
+  fetchAsyncShows,
+} from "../../features/movies/movieSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,6 +23,7 @@ const Home = () => {
     // };
 
     dispatch(fetchAsyncMovies());
+    dispatch(fetchAsyncShows());
   }, [dispatch]);
 
   return (
