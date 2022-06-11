@@ -1,12 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import movieApi from "../../common/apis/MovieApi";
-import { APIkey } from "../../common/apis/MovieApiKey";
+// import movieApi from "../../common/apis/MovieApi";
+// import { APIkey } from "../../common/apis/MovieApiKey";
+import axios from "axios";
 
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
   async (term) => {
-    const response = await movieApi
-      .get(`?apikey=${APIkey}&s=${term}&type=movie`)
+    const response = await axios
+      .create({
+        baseURL: "https://www.omdbapi.com",
+      })
+      .get(`?apikey=3d1a65a7&s=${term}&type=movie`)
       .catch((err) => {
         console.log("Error :", err);
       });
@@ -17,8 +21,11 @@ export const fetchAsyncMovies = createAsyncThunk(
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
   async (term) => {
-    const response = await movieApi
-      .get(`?apikey=${APIkey}&s=${term}&type=series`)
+    const response = await axios
+      .create({
+        baseURL: "https://www.omdbapi.com",
+      })
+      .get(`?apikey=3d1a65a7&s=${term}&type=series`)
       .catch((err) => {
         console.log("Error :", err);
       });
@@ -30,8 +37,11 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
   "movies/fetchAsyncMovieOrShowDetail",
 
   async (id) => {
-    const response = await movieApi
-      .get(`?apikey=${APIkey}&i=${id}&Plot=full`)
+    const response = await axios
+      .create({
+        baseURL: "https://www.omdbapi.com",
+      })
+      .get(`?apikey=3d1a65a7&i=${id}&Plot=full`)
       .catch((err) => {
         console.log("Error :", err);
       });
